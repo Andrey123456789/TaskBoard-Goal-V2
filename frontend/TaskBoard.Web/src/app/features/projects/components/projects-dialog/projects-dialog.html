@@ -1,0 +1,66 @@
+<h2 mat-dialog-title>Projects</h2>
+
+<mat-dialog-content>
+  <ul class="entity-list">
+    @for (project of projects(); track project.id) {
+      <li [class.editing]="editingId() === project.id">
+        <div class="entity-text">
+          <span class="name">{{ project.name }}</span>
+          @if (project.description) {
+            <span class="secondary">{{ project.description }}</span>
+          }
+        </div>
+        <button
+          mat-icon-button
+          type="button"
+          [attr.aria-label]="'Edit ' + project.name"
+          (click)="edit(project)"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          type="button"
+          [attr.aria-label]="'Delete ' + project.name"
+          (click)="delete(project)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </li>
+    } @empty {
+      <li class="secondary">No projects yet.</li>
+    }
+  </ul>
+
+  <form class="entity-form" [formGroup]="form" (ngSubmit)="submit()">
+    <h3>{{ editingId() ? 'Edit project' : 'Add project' }}</h3>
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" [maxlength]="limits.projectName" required />
+      @if (form.controls.name.hasError('required')) {
+        <mat-error>Name is required.</mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <textarea
+        matInput
+        formControlName="description"
+        rows="2"
+        [maxlength]="limits.projectDescription"
+      ></textarea>
+    </mat-form-field>
+    <div class="form-actions">
+      @if (editingId()) {
+        <button mat-button type="button" (click)="cancelEdit()">Cancel edit</button>
+      }
+      <button mat-flat-button type="submit" [disabled]="saving()">
+        {{ editingId() ? 'Save' : 'Add' }}
+      </button>
+    </div>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button type="button" mat-dialog-close>Close</button>
+</mat-dialog-actions>

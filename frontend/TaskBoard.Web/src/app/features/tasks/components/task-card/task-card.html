@@ -1,0 +1,43 @@
+<mat-card
+  class="task-card"
+  appearance="outlined"
+  role="button"
+  tabindex="0"
+  [attr.aria-label]="'Open task ' + task().title"
+  (click)="opened.emit(task().id)"
+  (keydown.enter)="opened.emit(task().id)"
+>
+  <mat-card-content>
+    <div class="title">{{ task().title }}</div>
+    <div class="meta">
+      <span class="project">{{ task().project.name }}</span>
+      @if (task().assignee; as assignee) {
+        <span class="assignee" [class.deleted-user]="assignee.isDeletedUser">{{
+          assignee.name
+        }}</span>
+      } @else {
+        <span class="assignee unassigned">Unassigned</span>
+      }
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <span class="status status-{{ task().status }}">{{ statusLabel() }}</span>
+    @if (action(); as action) {
+      <span
+        [matTooltip]="actionEnabled() ? '' : 'Assign an active user before starting'"
+        class="action-wrapper"
+      >
+        <button
+          mat-stroked-button
+          type="button"
+          class="status-action"
+          [disabled]="!actionEnabled()"
+          (click)="requestStatusChange($event)"
+          (keydown.enter)="$event.stopPropagation()"
+        >
+          {{ action.label }}
+        </button>
+      </span>
+    }
+  </mat-card-actions>
+</mat-card>

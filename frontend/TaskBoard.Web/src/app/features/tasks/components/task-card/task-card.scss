@@ -1,0 +1,51 @@
+.task-card {
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 2px solid var(--mat-sys-primary);
+  }
+}
+
+.title {
+  font: var(--mat-sys-title-small);
+  margin-bottom: 6px;
+  word-break: break-word;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  font: var(--mat-sys-body-small);
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.unassigned,
+.deleted-user {
+  font-style: italic;
+}
+
+.deleted-user {
+  color: var(--mat-sys-error);
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.status {
+  font: var(--mat-sys-label-small);
+  padding: 2px 8px;
+  border-radius: 12px;
+  background: var(--mat-sys-surface-container-high);
+}
+
+.status-InProgress {
+  background: var(--mat-sys-primary-container);
+}
+
+.status-Completed {
+  background: var(--mat-sys-tertiary-container);
+}

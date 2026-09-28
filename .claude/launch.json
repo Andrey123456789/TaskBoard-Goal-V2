@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "api",
+      "runtimeExecutable": "dotnet",
+      "runtimeArgs": ["run", "--project", "backend/TaskBoard.Api", "--launch-profile", "http"],
+      "port": 5080
+    },
+    {
+      "name": "web",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "start", "--prefix", "frontend/TaskBoard.Web"],
+      "port": 4200
+    }
+  ]
+}

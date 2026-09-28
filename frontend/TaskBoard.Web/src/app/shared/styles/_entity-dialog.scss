@@ -1,0 +1,58 @@
+// Shared layout for the user and project management dialogs.
+
+mat-dialog-content {
+  min-width: min(520px, 85vw);
+}
+
+.entity-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 0;
+    border-bottom: 1px solid var(--mat-sys-outline-variant);
+
+    &.editing {
+      background: var(--mat-sys-secondary-container);
+    }
+  }
+}
+
+.entity-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.name {
+  font: var(--mat-sys-body-large);
+}
+
+.secondary {
+  font: var(--mat-sys-body-small);
+  color: var(--mat-sys-on-surface-variant);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.entity-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 16px;
+
+  h3 {
+    margin: 8px 0;
+    font: var(--mat-sys-title-small);
+  }
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}

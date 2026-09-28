@@ -1,0 +1,62 @@
+# .NET
+bin/
+obj/
+.vs/
+*.user
+*.suo
+TestResults/
+coverage/
+
+# Rider / VS Code
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# Angular / Node
+node_modules/
+dist/
+.angular/
+out-tsc/
+
+# Logs
+*.log
+
+# Local overrides
+appsettings.*.local.json
+.env
+.env.*
+
+# >>> publish-gh safety >>>
+# Dependencies
+**/node_modules/
+
+# .NET build output
+**/[Bb]in/
+**/[Oo]bj/
+
+# IDE / user-specific files
+**/.vs/
+**/.idea/
+*.user
+*.suo
+
+# Local environment / secrets
+.env
+.env.*
+!.env.example
+!.env.sample
+**/secrets.json
+**/credentials.json
+*.pfx
+*.p12
+*.pem
+*.key
+id_rsa
+id_rsa.*
+id_ed25519
+id_ed25519.*
+
+# OS noise
+.DS_Store
+Thumbs.db
+# <<< publish-gh safety <<<

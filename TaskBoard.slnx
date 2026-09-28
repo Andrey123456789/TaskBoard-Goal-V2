@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/backend/">
+    <Project Path="backend/TaskBoard.Api/TaskBoard.Api.csproj" />
+    <Project Path="backend/TaskBoard.Application.Tests/TaskBoard.Application.Tests.csproj" />
+    <Project Path="backend/TaskBoard.Application/TaskBoard.Application.csproj" />
+    <Project Path="backend/TaskBoard.Domain/TaskBoard.Domain.csproj" />
+    <Project Path="backend/TaskBoard.Infrastructure/TaskBoard.Infrastructure.csproj" />
+    <Project Path="backend/TaskBoard.IntegrationTests/TaskBoard.IntegrationTests.csproj" />
+  </Folder>
+</Solution>

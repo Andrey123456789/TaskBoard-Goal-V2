@@ -1,0 +1,70 @@
+<h2 mat-dialog-title>Users</h2>
+
+<mat-dialog-content>
+  <ul class="entity-list">
+    @for (user of users(); track user.id) {
+      <li [class.editing]="editingId() === user.id">
+        <div class="entity-text">
+          <span class="name">{{ user.name }}</span>
+          <span class="secondary">{{ user.email }}</span>
+        </div>
+        <button
+          mat-icon-button
+          type="button"
+          [attr.aria-label]="'Edit ' + user.name"
+          (click)="edit(user)"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          type="button"
+          [attr.aria-label]="'Delete ' + user.name"
+          (click)="delete(user)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </li>
+    } @empty {
+      <li class="secondary">No users yet.</li>
+    }
+  </ul>
+
+  <form class="entity-form" [formGroup]="form" (ngSubmit)="submit()">
+    <h3>{{ editingId() ? 'Edit user' : 'Add user' }}</h3>
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" [maxlength]="limits.userName" required />
+      @if (form.controls.name.hasError('required')) {
+        <mat-error>Name is required.</mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input
+        matInput
+        type="email"
+        formControlName="email"
+        [maxlength]="limits.userEmail"
+        required
+      />
+      @if (form.controls.email.hasError('required')) {
+        <mat-error>Email is required.</mat-error>
+      } @else if (form.controls.email.hasError('email')) {
+        <mat-error>Enter a valid email address.</mat-error>
+      }
+    </mat-form-field>
+    <div class="form-actions">
+      @if (editingId()) {
+        <button mat-button type="button" (click)="cancelEdit()">Cancel edit</button>
+      }
+      <button mat-flat-button type="submit" [disabled]="saving()">
+        {{ editingId() ? 'Save' : 'Add' }}
+      </button>
+    </div>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button type="button" mat-dialog-close>Close</button>
+</mat-dialog-actions>
